@@ -15,17 +15,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
-        layout.minimumInteritemSpacing = 10
-        layout.minimumLineSpacing = 10
-        layout.sectionInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
-        layout.itemSize = CGSize(width: 100, height: 100)
-        let vc = PhotoCollectionViewController(collectionViewLayout: layout)
-        let service = PixarBayApi()
-        vc.viewModel = PixarImageViewModel(serviceApi: service)
-        window?.rootViewController = vc
         
+        let containerVC = ContainerViewController()
+        window?.rootViewController = containerVC
         window?.makeKeyAndVisible()
     }
 

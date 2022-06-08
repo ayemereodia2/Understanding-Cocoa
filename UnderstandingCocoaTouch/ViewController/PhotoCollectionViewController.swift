@@ -4,16 +4,21 @@ private let reuseIdentifier = "Cell"
 
 class PhotoCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     public var viewModel: PixarImageViewModel?
-    private var hits: Hit?
+    private var hits: [WebImage] = []
     var isLoading = false
     var pageCount = 1
+    var searchQuery: String? = "" {
+        didSet {
+            hits = []
+            viewModel?.getData(searchQuery: searchQuery ?? "Baby", page: 1)
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.collectionView!.register(PhotoViewerCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         viewModel?.delegate = self
-        viewModel?.getData(searchQuery: "Books", page: 1)
-    
+        viewModel?.getData(searchQuery: searchQuery ?? "Baby", page: 1)
     }
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -22,19 +27,14 @@ class PhotoCollectionViewController: UICollectionViewController, UICollectionVie
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-        guard let images = hits?.images else {
-            return 0
-        }
-        
-        return images.count
+         hits.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? PhotoViewerCell else { return UICollectionViewCell() }
     
         // Configure the cell
-        cell.setImage(name: hits?.images[indexPath.row].webformatURL)
+        cell.setImage(name: hits[indexPath.row].webformatURL)
         cell.setTagTitle(title: "books")
         return cell
     }
@@ -69,9 +69,10 @@ extension PhotoCollectionViewController: PixarImageViewHandler {
         }
     }
     
-    func didReceiveData(images: Hit?) {
+    func didReceiveData() {
+        guard let images = viewModel?.webImage else { return }
         DispatchQueue.main.async {
-            self.hits = images
+            self.hits.append(contentsOf: images)
             self.collectionView.reloadData()
         }
     }
@@ -79,11 +80,9 @@ extension PhotoCollectionViewController: PixarImageViewHandler {
 
 extension PhotoCollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if let images = hits?.images {
-            if indexPath.row == images.count - 1 {
-                pageCount += 1
-                
-            }
+        if indexPath.row == hits.count - 1 {
+            pageCount += 1
+            viewModel?.getData(searchQuery: searchQuery ?? "Baby", page: pageCount)
         }
     }
 }

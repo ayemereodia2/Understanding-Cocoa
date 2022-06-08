@@ -9,7 +9,7 @@ import Foundation
 protocol PixarImageViewHandler: AnyObject {
     func showLoading()
     func hideLoading()
-    func didReceiveData(images: Hit?)
+    func didReceiveData()
 
 }
 
@@ -20,6 +20,7 @@ protocol PixarImageViewModelProtocol {
 class PixarImageViewModel {
     private let serviceApi: ServiceApi?
     weak var delegate: PixarImageViewHandler?
+    var webImage: [WebImage]?
     
     init(serviceApi: ServiceApi) {
         self.serviceApi = serviceApi
@@ -30,10 +31,11 @@ class PixarImageViewModel {
         serviceApi?.getImageLinks(searchString: searchQuery, pageNumber: page) { result in
             switch result {
             case .failure:
-                self.delegate?.didReceiveData(images: nil)
+                self.delegate?.hideLoading()
             case .success(let image):
                 let receivedImage = image.hits.compactMap { WebImage(subPixarImage: $0)}
-                self.delegate?.didReceiveData(images: Hit(images: receivedImage))
+                self.webImage = receivedImage
+                self.delegate?.didReceiveData()
             }
             self.delegate?.hideLoading()
         }

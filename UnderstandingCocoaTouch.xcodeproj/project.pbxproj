@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		046649E928513953006C2AC6 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046649E828513953006C2AC6 /* SearchViewController.swift */; };
+		046649EB28513B95006C2AC6 /* SearchBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046649EA28513B95006C2AC6 /* SearchBarViewModel.swift */; };
+		046649ED28514132006C2AC6 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046649EC28514132006C2AC6 /* ContainerViewController.swift */; };
 		04B08761284F5CA200B1A4A8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B08760284F5CA200B1A4A8 /* AppDelegate.swift */; };
 		04B08763284F5CA200B1A4A8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B08762284F5CA200B1A4A8 /* SceneDelegate.swift */; };
 		04B08765284F5CA200B1A4A8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B08764284F5CA200B1A4A8 /* ViewController.swift */; };
@@ -22,6 +25,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		046649E828513953006C2AC6 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		046649EA28513B95006C2AC6 /* SearchBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarViewModel.swift; sourceTree = "<group>"; };
+		046649EC28514132006C2AC6 /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		04B0875D284F5CA200B1A4A8 /* UnderstandingCocoaTouch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UnderstandingCocoaTouch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04B08760284F5CA200B1A4A8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04B08762284F5CA200B1A4A8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -85,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				04CBD046285102F600AD0C1F /* PixarImageViewModel.swift */,
+				046649EA28513B95006C2AC6 /* SearchBarViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -92,8 +99,10 @@
 		04CBD04F28511C5100AD0C1F /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				046649E828513953006C2AC6 /* SearchViewController.swift */,
 				04CBD04A2851172D00AD0C1F /* PhotoViewerCell.swift */,
 				04DFD71B284F8B0C00974C03 /* PhotoCollectionViewController.swift */,
+				046649EC28514132006C2AC6 /* ContainerViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -204,10 +213,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				04CBD04D2851179700AD0C1F /* DownloadableImageView.swift in Sources */,
+				046649E928513953006C2AC6 /* SearchViewController.swift in Sources */,
+				046649ED28514132006C2AC6 /* ContainerViewController.swift in Sources */,
 				04B08765284F5CA200B1A4A8 /* ViewController.swift in Sources */,
 				04B08761284F5CA200B1A4A8 /* AppDelegate.swift in Sources */,
 				04CBD0452850D3DE00AD0C1F /* PixarImage.swift in Sources */,
 				04CBD047285102F600AD0C1F /* PixarImageViewModel.swift in Sources */,
+				046649EB28513B95006C2AC6 /* SearchBarViewModel.swift in Sources */,
 				04CBD049285116FE00AD0C1F /* ActivityIndicator.swift in Sources */,
 				04CBD0432850C58700AD0C1F /* PixarBayApi.swift in Sources */,
 				04CBD04B2851172D00AD0C1F /* PhotoViewerCell.swift in Sources */,
